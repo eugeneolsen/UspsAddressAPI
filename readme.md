@@ -33,7 +33,7 @@ The view consists of bare-bones WinForm code.   The default Form1 has been renam
 All business logic, with the exception of some rudimentary length and numeric checking for the ZIP Code input, is handled by the Presenter.
 
 ### The Presenter
-The Presenter class, MainPresenter, builds a request for the USPS Address API and submits it using an asynchronous HttpRequest so as not to block the UI. Then the Presenter parses the response, whether City and State or an error.  
+The Presenter class, MainPresenter, builds a request for the USPS Address API and submits it using an asynchronous HttpRequest so as not to block the UI. The Presenter then parses the response, whether City and State or an error.  
 
 The Presenter is instantiated, as is customary, by the View, which passes a reference to itself to the Presenter, as is also customary with the Model-View-Presenter pattern.  This reference is currently not used by the Presenter.
 
