@@ -16,7 +16,7 @@ Separating the UI from the processing logic can make code clearer and easier to 
 is to enable self-testing code and test-driven development (TDD) for applications with user interfaces.
 Martin Fowler, noted author on software pattens and practices, discusses this in his essay on [GUI Architectures](https://www.martinfowler.com/eaaDev/uiArchs.html).
 
-####The Model
+#### The Model
 In our CityStateLookup application, the model is the city and state information returned by the United States Postal Service Address API.  
 The XML response is a <CityStateLookupResponse> containing 1 to 5 <ZipCode> elements or an <Error> element.
 The <ZipCode> element contains an ID attribute, a <City>, <State>, and <Zip5> element.
@@ -28,4 +28,4 @@ Scroll to the bottom of the web page for the City/State Lookup documentation and
 
 Perhaps this model isn't really a true model in the strictest sense, but the application is structured to accomodate such.
 
-####The View
+#### The View
