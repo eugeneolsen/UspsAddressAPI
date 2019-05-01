@@ -46,7 +46,7 @@
     
     mimetype: application/x-microsoft.net.object.binary.base64
     value   : The object must be serialized with 
-            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
     
     mimetype: application/x-microsoft.net.object.soap.base64
@@ -60,6 +60,7 @@
             : and then encoded with base64 encoding.
     -->
   <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
@@ -68,9 +69,10 @@
               <xsd:sequence>
                 <xsd:element name="value" type="xsd:string" minOccurs="0" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="name" use="required" type="xsd:string" />
               <xsd:attribute name="type" type="xsd:string" />
               <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
@@ -85,9 +87,10 @@
                 <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
                 <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
               <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
               <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
@@ -109,9 +112,61 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="dsn_brd_eagle_302x134" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\dsn_brd_eagle_302x134.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="edit_find" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\edit_find.ico;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ZipCodeIDAttribute" xml:space="preserve">
+    <value>ID</value>
+  </data>
+  <data name="ZipCodeElementName" xml:space="preserve">
+    <value>ZipCode</value>
+  </data>
+  <data name="CityElementName" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="DescriptionElementName" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="ErrorElementName" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="StateElementName" xml:space="preserve">
+    <value>State</value>
+  </data>
+  <data name="Zip5ElementName" xml:space="preserve">
+    <value>Zip5</value>
+  </data>
+  <data name="RequestElementName" xml:space="preserve">
+    <value>CityStateLookupRequest</value>
+  </data>
+  <data name="UserIDAttribute" xml:space="preserve">
+    <value>USERID</value>
+  </data>
+  <data name="ResponseElementName" xml:space="preserve">
+    <value>CityStateLookupResponse</value>
+  </data>
+  <data name="UnknownErrorMessage" xml:space="preserve">
+    <value>Unknown error.  Save input and contact the developer</value>
+  </data>
+  <data name="ZipCode5NumericErrorMessage" xml:space="preserve">
+    <value>Zip Code must be 5 numeric characters</value>
+  </data>
+  <data name="AuthorizationValue" xml:space="preserve">
+    <value>USPSCOM::DoAuth</value>
+  </data>
+  <data name="InvalidUserIDMessage" xml:space="preserve">
+    <value>Invalid UserID. Check config file.</value>
+  </data>
+  <data name="SourceElementName" xml:space="preserve">
+    <value>Source</value>
+  </data>
 </root>
