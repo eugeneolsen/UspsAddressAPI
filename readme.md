@@ -1,8 +1,8 @@
-##CityStateLookup
+## CityStateLookup
 CityStateLookup is a small WinForms application that calls the United States Postal Service Address API.  It is designed and built using a _very_ simple Model-View-Presenter (MVP) pattern. 
 It's main purpose is to showcase some my development skills and thought processes.
 
-###WinForms MVP
+### WinForms MVP
 There are a number of examples of MVP for Windows Forms (aka WinForms) of varying complexity on the web.   WinForms is an aging but not obsolete technology: 
 Microsoft is adding WinForms support to .NET Core 3.0.  There is a place for WinForms in new development for leading-edge technologies.
 
