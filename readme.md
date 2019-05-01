@@ -40,4 +40,4 @@ The Presenter is instantiated, as is customary, by the View, which passes a refe
 Rather than attempt XML deserialization, the Presenter parses the response XML using the Linq to XML XDocument class.  After long and sometimes painful experience, the author firmly believes that XML from third parties, over which the developer has no control, should generally _not_ be deserialized with the XmlSerializer class, but rather, with XmlReader, XmlDocument, or XDocument.
 
 #### Unit Tests
-With the business logic separated from the data and the user interface, creating unit tests not only becomes possible, but also easy.  The xUnit package was chosen for this project.  Unit tests can be found in the file UnitTests.cs.
+With the business logic separated from the data and the user interface, creating unit tests not only becomes possible, but also easy.  The [xUnit](https://xunit.net) tool was chosen for this project.  Unit tests can be found in the file UnitTests.cs.
