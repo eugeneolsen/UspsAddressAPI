@@ -33,6 +33,11 @@ The view consists of bare-bones WinForm code.   The default Form1 has been renam
 All business logic, with the exception of some rudimentary length and numeric checking for the ZIP Code input, is handled by the Presenter.
 
 ### The Presenter
-The Presenter class, MainPresenter, builds a request for the USPS Address API and submits it. Then parses the response, whether City and State or an error.   
+The Presenter class, MainPresenter, builds a request for the USPS Address API and submits it. Then parses the response, whether City and State or an error.  
+
+The Presenter is instantiated, as is customary, by the View, which passes a reference to itself to the Presenter, as is also customary with the Model-View-Presenter pattern.  This reference is currently not used by the Presenter.
 
 Rather than attempt XML deserialization, the Presenter parses the response XML using the Linq to XML XDocument class.  After long and sometimes painful experience, the author firmly believes that XML from third parties, over which the developer has no control, should generally _not_ be deserialized with the XmlSerializer class, but rather, with XmlReader, XmlDocument, or XDocument.
+
+## Unit Tests
+With the business logic separated from the data and the user interface, creating unit tests not only becomes possible, but also easy.  The xUnit package was chosen for this project.  Unit tests can be found in the file UnitTests.cs.
