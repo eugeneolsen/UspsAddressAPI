@@ -45,7 +45,7 @@ With the business logic separated from the data and the user interface, creating
 ## Other Considerations
 
 ### Configuration
-The appSettings values are wrapped in a Singleton class and globally accessible.  The configuration wrapper class follows the Singleton pattern because the configuration settings collection is a Singleton in real life.   I have seen code limited in its reusability because  an interface to the configuration values is (needlessly) passed in to class constructors.   The same goes for logging classes: there is usually only one log.
+The appSettings values are wrapped in a Singleton class, defined in Config.cs, and globally accessible.  The configuration wrapper class follows the Singleton pattern because the configuration settings collection is a Singleton in real life.   I have seen code limited in its reusability because  an interface to the configuration values is (needlessly) passed in to class constructors.   The same goes for logging classes: there is usually only one log.   Even if there are multiple logs, each log is written only one place, and therefore each log should arguably be wrapped in a Singleton class.
 
 ### Literal Strings
 Most constants, whether numbers or character strings, become the source of a bug sooner or later.  To avoid their becoming bugs, such constants are best placed in configuration files or resource files.  I possibly went overboard in putting nearly all literal strings, including appSettings keys, in the application's string table.
