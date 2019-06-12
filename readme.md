@@ -31,11 +31,12 @@ Perhaps this model isn't really a true model in the strictest sense, but the app
 ### The View
 The view consists of bare-bones WinForm code.   The default Form1 has been renamed to MainView.   
 All business logic, with the exception of some rudimentary length and numeric checking for the ZIP Code input, is handled by the Presenter.
+An Interface IMainView gives the Presenter access to the City, State, and Zip properties of the View.
 
 ### The Presenter
 The Presenter class, MainPresenter, builds a request for the USPS Address API and submits it using an asynchronous HttpRequest so as not to block the UI. The Presenter then parses the response, whether City and State or an error.  
 
-The Presenter is instantiated, as is customary, by the View, which passes a reference to itself to the Presenter, as is also customary with the Model-View-Presenter pattern.  This reference is currently not used by the Presenter.
+The Presenter is instantiated, as is customary, by the View, which passes a reference to the IMainView interface to the Presenter, as is also customary with the Model-View-Presenter pattern.  This interface is used by the Presenter to update the View.
 
 Rather than attempt XML deserialization, the Presenter parses the response XML using the Linq to XML XDocument class.  After long and sometimes painful experience, the author firmly believes that XML from third parties, over which the developer has no control, should generally _not_ be deserialized with the XmlSerializer class, but rather, with XmlReader, XmlDocument, or XDocument.
 
