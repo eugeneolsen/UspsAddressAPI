@@ -11,10 +11,12 @@ namespace UspsAddressApi
     public class UnitTests
     {
         private readonly MainPresenter presenter;
+        private readonly IMainView mainView;
 
         public UnitTests()
         {
-            presenter = new MainPresenter(null);
+            mainView = new MainView();
+            presenter = new MainPresenter(mainView);
         }
 
 
@@ -22,9 +24,11 @@ namespace UspsAddressApi
         [InlineData("12345")]
         public async void ValidZipCodeReturnsResult(string value)
         {
-            CityStateLookupResponse result = await presenter.GetCityStateAsync(value);
+            mainView.Zip = value;
+            await presenter.GetCityStateAsync();
 
-            Assert.True(null != result);
+            Assert.True(mainView.City != string.Empty);
+            Assert.True(mainView.State != string.Empty);
         }
 
 
@@ -34,11 +38,10 @@ namespace UspsAddressApi
         [InlineData("84601", "PROVO")]
         public async void ReturnsExpectedCity(params string[] values)
         {
-            CityStateLookupResponse result = await presenter.GetCityStateAsync(values[0]);
+            mainView.Zip = values[0];
+            await presenter.GetCityStateAsync();
 
-            string city = result.ZipCodes.First().City;
-
-            Assert.True(values[1] == city);
+            Assert.True(values[1] == mainView.City);
         }
 
 
@@ -48,11 +51,10 @@ namespace UspsAddressApi
         [InlineData("84601", "UT")]
         public async void ReturnsExpectedState(params string[] values)
         {
-            CityStateLookupResponse result = await presenter.GetCityStateAsync(values[0]);
+            mainView.Zip = values[0];
+            await presenter.GetCityStateAsync();
 
-            string state = result.ZipCodes.First().State;
-
-            Assert.True(values[1] == state);
+            Assert.True(values[1] == mainView.State);
         }
 
 
@@ -64,7 +66,8 @@ namespace UspsAddressApi
         [InlineData("2")]
         public async void ZipCodeNotLengthFive(string value)
         {
-            AddressApiException e = await Assert.ThrowsAsync<AddressApiException>(testCode: () => presenter.GetCityStateAsync(value));
+            mainView.Zip = value;
+            AddressApiException e = await Assert.ThrowsAsync<AddressApiException>(testCode: () => presenter.GetCityStateAsync());
 
             Assert.True("ZIPCode must be 5 characters" == e.Message);
         }
@@ -75,7 +78,8 @@ namespace UspsAddressApi
         [InlineData("8405%")]
         public async void ZipCodeNotNumeric(string value)
         {
-            AddressApiException e = await Assert.ThrowsAsync<AddressApiException>(testCode: () => presenter.GetCityStateAsync(value));
+            mainView.Zip = value;
+            AddressApiException e = await Assert.ThrowsAsync<AddressApiException>(testCode: () => presenter.GetCityStateAsync());
 
             Assert.True("Zip Codes must be numeric." == e.Message.TrimEnd());
         }
@@ -85,7 +89,8 @@ namespace UspsAddressApi
         [InlineData("80000")]
         public async void InvalidZipCodeThrowsZipCodeException(string value)
         {
-            AddressApiException e =  await Assert.ThrowsAsync<AddressApiException>(testCode: () => presenter.GetCityStateAsync(value));
+            mainView.Zip = value;
+            AddressApiException e =  await Assert.ThrowsAsync<AddressApiException>(testCode: () => presenter.GetCityStateAsync());
 
             Assert.True("Invalid Zip Code." == e.Message);
         }

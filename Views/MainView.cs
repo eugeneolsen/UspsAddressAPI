@@ -3,9 +3,25 @@ using System.Windows.Forms;
 
 namespace UspsAddressApi
 {
-    public partial class MainView : Form
+    public partial class MainView : Form, IMainView
     {
         private MainPresenter presenter;
+
+        public string City
+        {
+            get { return textBoxCity.Text; }
+            set { textBoxCity.Text = value; }
+        }
+        public string State
+        {
+            get { return textBoxState.Text; }
+            set { textBoxState.Text = value; }
+        }
+        public string Zip
+        {
+            get { return textBoxZipCode.Text; }
+            set { textBoxZipCode.Text = value; }
+        }
 
         public MainView()
         {
@@ -25,11 +41,9 @@ namespace UspsAddressApi
                 return;
             }
 
-            CityStateLookupResponse cityState = new CityStateLookupResponse();
-
             try
             {
-                cityState = await presenter.GetCityStateAsync(textBoxZipCode.Text);
+                await presenter.GetCityStateAsync();
             }
             catch (AddressApiException ze)
             {
@@ -42,17 +56,14 @@ namespace UspsAddressApi
                 statusMessage.Text = Properties.Resources.UnknownErrorMessage;
                 return;
             }
-
-            textBoxCity.Text = cityState.ZipCodes[0].City;
-            textBoxState.Text = cityState.ZipCodes[0].State;
         }
 
 
         private void ClearView()
         {
+            City = string.Empty;
+            State = string.Empty;
             statusMessage.Text = string.Empty;
-            textBoxCity.Text = string.Empty;
-            textBoxState.Text = string.Empty;
         }
     }
 }

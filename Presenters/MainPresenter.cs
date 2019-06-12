@@ -7,21 +7,21 @@ namespace UspsAddressApi
 {
     class MainPresenter
     {
-        private readonly MainView mainView;
+        private readonly IMainView mainView;
 
         private HttpClient httpClient = new HttpClient();
 
-        public MainPresenter(MainView view)
+        public MainPresenter(IMainView view)
         {
             mainView = view;
         }
 
 
-        public async Task<CityStateLookupResponse> GetCityStateAsync(string zipCode)
+        public async Task GetCityStateAsync()
         {
             CityStateLookupResponse cityState = new CityStateLookupResponse();
 
-            HttpResponseMessage response = await httpClient.GetAsync(BuildRequest(zipCode));
+            HttpResponseMessage response = await httpClient.GetAsync(BuildRequest(mainView.Zip));
             if (response.IsSuccessStatusCode)
             {
                 var stream = await response.Content.ReadAsStreamAsync();
@@ -32,7 +32,7 @@ namespace UspsAddressApi
                 XElement root = document.Root;
                 string rootElementName = root.Name.LocalName;
 
-                if (Properties.Resources.ResponseElementName == document.Root.Name.LocalName)
+                if (Properties.Resources.ResponseElementName == document.Root.Name.LocalName)   // Successful lookup response
                 {
                     foreach (XElement zipCodeElement in document.Descendants(Properties.Resources.ZipCodeElementName))
                     {
@@ -50,20 +50,14 @@ namespace UspsAddressApi
                             throw new AddressApiException(errorDescription, xmlString);
                         }
 
-                        ZipCode zip = new ZipCode()
-                        {
-                            ID = id,
-                            Zip5 = zip5,
-                            City = city,
-                            State = state
-                        };
-
-                        cityState.ZipCodes.Add(zip);
+                        mainView.City = city;
+                        mainView.State = state;
+                        mainView.Zip = zip5;
                     }
                 }
                 else
                 {
-                    if (Properties.Resources.ErrorElementName == root.Name.LocalName)
+                    if (Properties.Resources.ErrorElementName == root.Name.LocalName)   // Error of expected error type
                     {
                         string description = (string)root.Element(Properties.Resources.DescriptionElementName);
 
@@ -86,8 +80,6 @@ namespace UspsAddressApi
             {
                 throw new AddressApiException($"USPS Address API failed: {response.ReasonPhrase}");
             }
-
-            return cityState;
         }
 
         private string BuildRequest(string zipCode)

@@ -70,6 +70,7 @@
     <Compile Include="Models\CityState.cs" />
     <Compile Include="Presenters\MainPresenter.cs" />
     <Compile Include="UnitTests.cs" />
+    <Compile Include="Views\IMainView.cs" />
     <Compile Include="Views\MainView.cs">
       <SubType>Form</SubType>
     </Compile>
