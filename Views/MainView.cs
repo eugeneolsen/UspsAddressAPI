@@ -9,18 +9,18 @@ namespace UspsAddressApi
 
         public string City
         {
-            get { return textBoxCity.Text; }
-            set { textBoxCity.Text = value; }
+            get => textBoxCity.Text;
+            set => textBoxCity.Text = value;
         }
         public string State
         {
-            get { return textBoxState.Text; }
-            set { textBoxState.Text = value; }
+            get => textBoxState.Text;
+            set => textBoxState.Text = value;
         }
         public string Zip
         {
-            get { return textBoxZipCode.Text; }
-            set { textBoxZipCode.Text = value; }
+            get => textBoxZipCode.Text;
+            set => textBoxZipCode.Text = value;
         }
 
         public MainView()

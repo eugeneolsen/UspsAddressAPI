@@ -19,18 +19,14 @@ namespace UspsAddressApi
 
         public async Task GetCityStateAsync()
         {
-            CityStateLookupResponse cityState = new CityStateLookupResponse();
-
             HttpResponseMessage response = await httpClient.GetAsync(BuildRequest(mainView.Zip));
+
             if (response.IsSuccessStatusCode)
             {
-                var stream = await response.Content.ReadAsStreamAsync();
-
                 string xmlString = await response.Content.ReadAsStringAsync();
 
                 XDocument document = XDocument.Parse(xmlString);
                 XElement root = document.Root;
-                string rootElementName = root.Name.LocalName;
 
                 if (Properties.Resources.ResponseElementName == document.Root.Name.LocalName)   // Successful lookup response
                 {
