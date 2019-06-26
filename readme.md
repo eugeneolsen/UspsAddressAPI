@@ -18,9 +18,9 @@ Martin Fowler, noted author on software pattens and practices, discusses this in
 
 ### The Model
 In our CityStateLookup application, the model is the city and state information returned by the United States Postal Service Address API.  
-The XML response from the USPS Web API is a <CityStateLookupResponse> containing 1 to 5 <ZipCode> elements or an <Error> element.
-The <ZipCode> element contains an ID attribute, a <City>, <State>, and <Zip5> element.
-The <Error> element contains a <Number> and a <Description> element.
+The XML response from the USPS Web API is a \<CityStateLookupResponse> element containing 1 to 5 \<ZipCode> elements or an \<Error> element.
+The \<ZipCode> element contains an ID attribute, a \<City>, \<State>, and \<Zip5> element.
+The \<Error> element contains a \<Number> and a \<Description> element.
 These are all documented in greater detail at [Address Information USPS Web Tools API User's Guide](https://www.usps.com/business/web-tools-apis/address-information-api.htm).
 Scroll to the bottom of the web page for the City/State Lookup documentation and example.
 
