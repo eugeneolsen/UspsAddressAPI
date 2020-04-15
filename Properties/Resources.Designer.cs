@@ -117,7 +117,7 @@ namespace UspsAddressApi.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Invalid UserID. Check config file..
+        ///   Looks up a localized string similar to Invalid UserID. Check Environment Variable UspsUserID..
         /// </summary>
         internal static string InvalidUserIDMessage {
             get {

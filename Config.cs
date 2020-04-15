@@ -1,4 +1,5 @@
-﻿using System.Configuration;
+﻿using System;
+using System.Configuration;
 
 namespace UspsAddressApi
 {
@@ -25,7 +26,7 @@ namespace UspsAddressApi
 
                     var appSettings = ConfigurationManager.AppSettings;
                     instance.Uri = appSettings.Get("uri");
-                    instance.UserID = appSettings.Get("UserID");
+                    instance.UserID = Environment.GetEnvironmentVariable("UspsUserID");
                     instance.RequestFile = appSettings.Get("RequestFile");
                 }
 
