@@ -4,7 +4,7 @@ It's main purpose is to showcase some my development skills and thought processe
 
 ## WinForms MVP
 There are a number of examples of MVP for Windows Forms (aka WinForms) of varying complexity on the web.   WinForms is an aging but not obsolete technology: 
-Microsoft is adding WinForms support to .NET Core 3.0.  There is a place for WinForms in new development for leading-edge technologies.
+Microsoft is including WinForms support in .NET 6.  There is a place for WinForms in new development for leading-edge technologies.
 
 The primary goals of the Model-View-Presenter pattern are:
 1. Separation of the user interface from business logic from data.
